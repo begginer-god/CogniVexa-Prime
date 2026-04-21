@@ -1,0 +1,146 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.glass-effect {
+  background: rgba(230, 230, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.gradient-bg {
+  background: linear-gradient(235deg, #425ac2 0%, #351a50 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.study-session-completed {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.study-session-pending {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+.study-session-upcoming {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+body.light-theme {
+  background: linear-gradient(135deg, #839b8c 0%, #fef3c7 100%);
+  color: #1f2937; /* softer dark blue-gray */
+}
+
+body.light-theme .glass-effect {
+  background: rgba(226, 233, 167, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .gradient-bg {
+  background: linear-gradient(135deg, #e0e7ff 0%, #fef3c7 100%);
+}
+
+body.light-theme .text-white {
+  color: #1f2937 !important;
+}
+
+body.light-theme .text-gray-200,
+body.light-theme .text-gray-300 {
+  color: #374151 !important;
+}
+
+body.light-theme .study-session-completed {
+  background: linear-gradient(135deg, #d1fae5, #6ee7b7);
+  color: #065f46;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .study-session-pending {
+  background: linear-gradient(135deg, #961111, #791717);
+  color: #580606;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .study-session-upcoming {
+  background: linear-gradient(135deg, #fef08a, #facc15);
+  color: #692e09;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Status Report Styles */
+.status-excellent {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+.status-good {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+.status-average {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+.status-poor {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+.status-critical {
+  background: linear-gradient(135deg, #7c2d12, #451a03);
+}
+
+
+
+/* About Page Light Theme Styles */
+
+
+body.light-theme .glass-effect {
+  background: rgba(226, 233, 167, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .text-white {
+  color: #1f2937 !important;
+}
+
+body.light-theme .text-gray-200,
+body.light-theme .text-gray-300 {
+  color: #374151 !important;
+}
+
+body.light-theme .text-yellow-300 {
+  color: #b45309 !important;
+}
+
+body.light-theme footer p {
+  color: #374151;
+}
+
+body.light-theme footer .text-white {
+  color: #1f2937 !important;
+}

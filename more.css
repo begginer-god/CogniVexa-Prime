@@ -1,0 +1,131 @@
+/* Video Card Styles for More from Us Page */
+
+/* Video Card Container */
+.video-card {
+  background: rgba(230, 230, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.video-card:hover {
+  background: rgba(230, 230, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Video Thumbnail Container */
+.video-thumbnail {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-thumbnail img {
+  transition: transform 0.3s ease;
+}
+
+.video-card:hover .video-thumbnail img {
+  transform: scale(1.05);
+}
+
+/* Play Button Overlay */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(239, 68, 68, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.play-button svg {
+  color: white;
+  margin-left: 4px;
+}
+
+.video-card:hover .play-button {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(239, 68, 68, 1);
+}
+
+/* Video Title */
+.video-title {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  display: box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* YouTube Link Styling */
+.video-card a[href^="https://www.youtube.com"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(239, 68, 68, 0.2);
+  transition: all 0.3s ease;
+}
+
+.video-card a[href^="https://www.youtube.com"]:hover {
+  background: rgba(239, 68, 68, 0.4);
+}
+
+/* Subscribe Button */
+a[href*="youtube.com/@CogniVexaPrime"] {
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}
+
+a[href*="youtube.com/@CogniVexaPrime"]:hover {
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+}
+
+/* Light Theme Overrides */
+body.light-theme .video-card {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .video-card:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+body.light-theme .video-title {
+  color: #1f2937;
+}
+
+body.light-theme .video-card p {
+  color: #4b5563;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .video-card {
+    margin-bottom: 1rem;
+  }
+
+  .play-button {
+    width: 50px;
+    height: 50px;
+  }
+
+  .play-button svg {
+    width: 24px;
+    height: 24px;
+  }
+}

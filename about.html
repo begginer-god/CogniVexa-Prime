@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - CogniVexa Prime</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="main.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "custom-blue": "#3B82F6",
+              "custom-green": "#10B981",
+              "custom-red": "#EF4444",
+              "custom-purple": "#8B5CF6",
+              "custom-orange": "#F59E0B",
+            },
+            animation: {
+              "fade-in": "fadeIn 0.5s ease-in-out",
+              "slide-up": "slideUp 0.3s ease-out",
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-screen gradient-bg">
+    <!-- Header -->
+    <header class="glass-effect shadow-lg">
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <!-- Left: Logo & Title -->
+          <div class="flex items-center space-x-3">
+            <a href="about.html" class="flex items-center space-x-2 group">
+              <div
+                class="w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform"
+              >
+                <span class="text-white font-bold text-lg">4.0</span>
+              </div>
+              <div>
+                <h1
+                  class="text-white text-xl font-bold tracking-wide group-hover:text-yellow-300 transition-colors"
+                >
+                  4.00 Journey
+                </h1>
+                <p class="text-gray-200 text-sm">Your Path to Excellence</p>
+              </div>
+            </a>
+          </div>
+          <!-- Right: Navigation Links & Date/Theme -->
+          <div class="flex items-center space-x-6">
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex space-x-4">
+              <a
+                href="about.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >About</a
+              >
+              <a
+                href="index.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >Planner</a
+              >
+              <a
+                href="more.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >More from us</a
+              >
+              <a
+                href="others.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >Also See</a
+              >
+
+              <a
+                href="contact.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >Contact</a
+              >
+            </nav>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+              <button
+                id="mobileMenuBtn"
+                class="text-white hover:text-yellow-300 text-2xl focus:outline-none"
+              >
+                ☰
+              </button>
+            </div>
+            <!-- Date & Theme Toggle -->
+            <div class="flex flex-col items-end space-y-1">
+              <p class="text-sm" id="currentDate"></p>
+              <p class="text-xs text-gray-200" id="currentTime"></p>
+              <button
+                id="themeToggleBtn"
+                onclick="toggleTheme()"
+                class="mt-2 bg-white/20 hover:bg-white/30 text-yellow-300 dark:text-gray-800 px-3 py-2 rounded-full transition-all"
+                title="Toggle Light/Dark Theme"
+              >
+                <span id="themeIcon">🌙</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
+          <nav class="flex flex-col space-y-2">
+            <a
+              href="about.html"
+              class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md text-center"
+              >About</a
+            >
+            <a
+              href="credit.html"
+              class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md text-center"
+              >Credit</a
+            >
+            <a
+              href="more.html"
+              class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md text-center"
+              >More from us</a
+            >
+            <a
+              href="contact.html"
+              class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md text-center"
+              >Contact</a
+            >
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+      <!-- Page Title -->
+      <div class="text-center mb-12 animate-fade-in">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+          About <span class="text-yellow-300">CogniVexa Prime</span>
+        </h1>
+        <p class="text-gray-200 text-lg max-w-2xl mx-auto">
+          Empowering students worldwide with knowledge, motivation, and
+          excellence
+        </p>
+      </div>
+
+      <!-- Channel Info Card -->
+      <div
+        class="glass-effect rounded-2xl p-8 mb-8 animate-slide-up backdrop-blur-md"
+      >
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <!-- Channel Image -->
+          <div class="flex-shrink-0">
+            <div
+              class="w-48 h-48 rounded-2xl overflow-hidden shadow-2xl border-4 border-yellow-400/30"
+            >
+              <img
+                src="photo.png"
+                alt="CogniVexa Prime Channel Logo"
+                class="w-full h-full object-cover"
+                onerror="
+                  this.src = 'https://www.youtube.com/@cognivexa_primeofficial'
+                "
+              />
+            </div>
+          </div>
+          <!-- Channel Details -->
+          <div class="flex-grow text-center md:text-left">
+            <h2 class="text-3xl font-bold text-white mb-2">CogniVexa Prime</h2>
+            <p class="text-yellow-300 text-xl mb-4">@cognivexa_primeofficial</p>
+            <p class="text-gray-200 text-lg leading-relaxed">
+              Welcome to <strong>CogniVexa Prime</strong> — your ultimate
+              destination for educational content, study motivation, and
+              personal growth. We believe that every student has the potential
+              to achieve 4.00 GPA excellence, and we're here to guide you on
+              that journey.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mission & Vision Section -->
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <!-- Mission -->
+        <div
+          class="glass-effect rounded-2xl p-6 animate-slide-up backdrop-blur-md"
+        >
+          <div class="flex items-center mb-4">
+            <div
+              class="w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mr-4"
+            >
+              <span class="text-white text-xl">🎯</span>
+            </div>
+            <h3 class="text-2xl font-bold text-white">Our Mission</h3>
+          </div>
+          <p class="text-gray-200 leading-relaxed">
+            To provide high-quality educational content that empowers students
+            to achieve academic excellence while maintaining a balanced and
+            motivated mindset. We strive to make learning accessible, engaging,
+            and impactful for students everywhere.
+          </p>
+        </div>
+
+        <!-- Vision -->
+        <div
+          class="glass-effect rounded-2xl p-6 animate-slide-up backdrop-blur-md"
+        >
+          <div class="flex items-center mb-4">
+            <div
+              class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4"
+            >
+              <span class="text-white text-xl">🌟</span>
+            </div>
+            <h3 class="text-2xl font-bold text-white">Our Vision</h3>
+          </div>
+          <p class="text-gray-200 leading-relaxed">
+            To become the leading educational platform that inspires millions of
+            students worldwide to reach their full potential and pursue
+            excellence in every aspect of their academic journey. We envision a
+            world where every student has access to the tools and motivation
+            they need to succeed.
+          </p>
+        </div>
+      </div>
+
+      <!-- What We Offer -->
+      <div
+        class="glass-effect rounded-2xl p-8 mb-8 animate-slide-up backdrop-blur-md"
+      >
+        <h3 class="text-2xl font-bold text-white text-center mb-6">
+          What We Offer
+        </h3>
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Study Tips -->
+          <div class="text-center p-4">
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <span class="text-white text-2xl">📚</span>
+            </div>
+            <h4 class="text-xl font-semibold text-white mb-2">Study Tips</h4>
+            <p class="text-gray-200">
+              Proven study techniques and time management strategies to maximize
+              your learning efficiency.
+            </p>
+          </div>
+
+          <!-- Motivation -->
+          <div class="text-center p-4">
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <span class="text-white text-2xl">💪</span>
+            </div>
+            <h4 class="text-xl font-semibold text-white mb-2">Motivation</h4>
+            <p class="text-gray-200">
+              Inspiring content to keep you motivated throughout your academic
+              journey.
+            </p>
+          </div>
+
+          <!-- Resources -->
+          <div class="text-center p-4">
+            <div
+              class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <span class="text-white text-2xl">🚀</span>
+            </div>
+            <h4 class="text-xl font-semibold text-white mb-2">Resources</h4>
+            <p class="text-gray-200">
+              Free study materials, planners, and tools to help you stay
+              organized.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connect Section -->
+      <div
+        class="glass-effect rounded-2xl p-8 animate-slide-up backdrop-blur-md"
+      >
+        <h3 class="text-2xl font-bold text-white text-center mb-6">
+          Connect With Us
+        </h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="https://youtube.com/@cognivexa_primeofficial"
+            target="_blank"
+            class="glass-effect px-6 py-3 rounded-full text-white hover:text-yellow-300 font-medium transition-all flex items-center gap-2 backdrop-blur-md hover:scale-105"
+          >
+            <span>📺</span> YouTube
+          </a>
+          <a
+            href="https://instagram.com/cognivexa_primeofficial"
+            target="_blank"
+            class="glass-effect px-6 py-3 rounded-full text-white hover:text-yellow-300 font-medium transition-all flex items-center gap-2 backdrop-blur-md hover:scale-105"
+          >
+            <span>📸</span> Instagram
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-effect mt-12 py-6 backdrop-blur-md">
+      <div class="container mx-auto px-4 text-center">
+        <p class="text-gray-200">
+          © 2026
+          <span class="text-yellow-300 font-semibold">CogniVexa Prime</span>.
+          All rights reserved.
+        </p>
+        <p class="text-gray-300 text-sm mt-2">
+          Part of <span class="text-white font-semibold">4.00 Journey</span> -
+          Your Path to Excellence
+        </p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="style.js"></script>
+    <script>
+      // Display current date and time
+      function updateDateTime() {
+        const now = new Date();
+        const options = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        document.getElementById("currentDate").textContent =
+          now.toLocaleDateString("en-US", options);
+        document.getElementById("currentTime").textContent =
+          now.toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+      }
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Theme toggle functionality
+      function toggleTheme() {
+        const body = document.body;
+        const themeIcon = document.getElementById("themeIcon");
+
+        body.classList.toggle("light-theme");
+
+        if (body.classList.contains("light-theme")) {
+          themeIcon.textContent = "☀️";
+          localStorage.setItem("theme", "light");
+        } else {
+          themeIcon.textContent = "🌙";
+          localStorage.setItem("theme", "dark");
+        }
+      }
+
+      // Load saved theme
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light") {
+        document.body.classList.add("light-theme");
+        document.getElementById("themeIcon").textContent = "☀️";
+      }
+    </script>
+  </body>
+</html>

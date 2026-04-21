@@ -1,0 +1,125 @@
+/* Contact Page - Coming Soon Section Styles */
+
+/* ============================================
+   Coming Soon Section
+   ============================================ */
+
+.coming-soon-section {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.2),
+    rgba(59, 130, 246, 0.2)
+  );
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.coming-soon-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(139, 92, 246, 0.1),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* Coming Soon Badge */
+.coming-soon-badge {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.badge-text {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: white;
+  font-weight: bold;
+  font-size: 0.875rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  letter-spacing: 0.1em;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.8);
+  }
+}
+
+.coming-soon-section h2 {
+  font-size: 2rem;
+  text-shadow: 0 2px 10px rgba(139, 92, 246, 0.3);
+}
+
+.coming-soon-section p {
+  line-height: 1.8;
+}
+
+/* CTA Buttons */
+.coming-soon-section a {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.coming-soon-section a:first-of-type {
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+}
+
+.coming-soon-section a:hover {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   Light Theme Overrides
+   ============================================ */
+
+body.light-theme .coming-soon-section {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.1),
+    rgba(59, 130, 246, 0.1)
+  );
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+body.light-theme .coming-soon-section h2 {
+  color: #1f2937;
+  text-shadow: none;
+}
+
+body.light-theme .coming-soon-section p {
+  color: #4b5563;
+}
+
+/* ============================================
+   Responsive Adjustments
+   ============================================ */
+
+@media (max-width: 768px) {
+  .coming-soon-section {
+    padding: 2rem 1rem;
+  }
+
+  .coming-soon-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .coming-soon-section .flex {
+    flex-direction: column;
+  }
+
+  .coming-soon-section a {
+    width: 100%;
+    justify-content: center;
+  }
+}

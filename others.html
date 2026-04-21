@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coming Soon - 4.00 Journey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="others.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "custom-blue": "#3B82F6",
+              "custom-green": "#10B981",
+              "custom-red": "#EF4444",
+              "custom-purple": "#8B5CF6",
+              "custom-orange": "#F59E0B",
+            },
+            animation: {
+              "fade-in": "fadeIn 0.5s ease-in-out",
+              "slide-up": "slideUp 0.3s ease-out",
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-screen gradient-bg">
+    <!-- Header -->
+    <header class="glass-effect shadow-lg">
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <!-- Left: Logo & Title -->
+          <div class="flex items-center space-x-3">
+            <a href="about.html" class="flex items-center space-x-2 group">
+              <div
+                class="w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform"
+              >
+                <span class="text-white font-bold text-lg">4.0</span>
+              </div>
+              <div>
+                <a href="about.html">
+                  <h1
+                    class="text-white text-xl font-bold tracking-wide group-hover:text-yellow-300 transition-colors"
+                  >
+                    4.00 Journey
+                  </h1>
+                  <p class="text-gray-200 text-sm">Your Path to Excellence</p>
+                </a>
+              </div>
+            </a>
+          </div>
+          <!-- Right: Navigation Links & Date/Theme -->
+          <div class="flex items-center space-x-6">
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex space-x-4">
+              <a
+                href="about.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >About</a
+              >
+              <a
+                href="index.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >Planner</a
+              >
+              <a
+                href="more.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >More from us</a
+              >
+              <a
+                href="others.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >Also See</a
+              >
+              <a
+                href="contact.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >Contact</a
+              >
+            </nav>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+              <button
+                id="mobileMenuBtn"
+                class="text-white hover:text-yellow-300 text-2xl focus:outline-none"
+              >
+                ☰
+              </button>
+            </div>
+            <!-- Date & Theme Toggle -->
+            <div class="flex flex-col items-end space-y-1">
+              <p class="text-sm" id="currentDate"></p>
+              <p class="text-xs text-gray-200" id="currentTime"></p>
+              <button
+                id="themeToggleBtn"
+                onclick="toggleTheme()"
+                class="mt-2 bg-white/20 hover:bg-white/30 text-yellow-300 dark:text-gray-800 px-3 py-2 rounded-full transition-all"
+                title="Toggle Light/Dark Theme"
+              >
+                <span id="themeIcon">🌙</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobileMenu" class="md:hidden hidden mt-3">
+          <nav
+            class="flex flex-col space-y-2 bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-900 rounded-lg p-4 shadow-lg"
+          >
+            <a
+              href="about.html"
+              class="text-white hover:text-yellow-300 font-medium transition-colors"
+              >About</a
+            >
+            <a
+              href="index.html"
+              class="text-white hover:text-yellow-300 font-medium transition-colors"
+              >Planner</a
+            >
+            <a
+              href="more.html"
+              class="text-white hover:text-yellow-300 font-medium transition-colors"
+              >More from us</a
+            >
+            <a
+              href="contact.html"
+              class="text-white hover:text-yellow-300 font-medium transition-colors"
+              >Contact</a
+            >
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-6">
+      <!-- Coming Soon Section -->
+      <div
+        class="coming-soon-section glass-effect rounded-2xl p-8 animate-fade-in text-center"
+      >
+        <div class="coming-soon-badge">
+          <span class="badge-text">COMING SOON</span>
+        </div>
+        <h2 class="text-3xl font-bold text-white mb-4">
+          🚀 Something Exciting is Brewing!
+        </h2>
+        <p class="text-gray-300 text-lg mb-6 max-w-2xl mx-auto">
+          We're working on something amazing for you! While you wait, check out
+          our YouTube channel for more content, motivation, and study tips.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="more.html"
+            class="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-bold px-6 py-3 rounded-full transition-all transform hover:scale-105"
+          >
+            <span>📺 Explore More Content</span>
+          </a>
+          <a
+            href="https://www.youtube.com/@cognivexa_primeofficial?sub_confirmation=1"
+            target="_blank"
+            class="inline-flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-full transition-all transform hover:scale-105"
+          >
+            <span>▶️ Visit YouTube Channel</span>
+          </a>
+        </div>
+        <p class="text-gray-400 text-sm mt-6">
+          Stay tuned! Something great is on the way... 🎉
+        </p>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+
+    <!-- Credits and copyrights section -->
+    <footer class="glass-effect mt-12 py-6 backdrop-blur-md">
+      <div class="container mx-auto px-4 text-center">
+        <p class="text-gray-200">
+          © 2026
+          <span class="text-yellow-300 font-semibold">CogniVexa Prime</span>.
+          All rights reserved.
+        </p>
+        <p class="text-gray-300 text-sm mt-2">
+          Part of <span class="text-white font-semibold">4.00 Journey</span> -
+          Your Path to Excellence
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

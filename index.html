@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Study Planner, Motivation & Tracker</title>
+    <!-- ...existing code... -->
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <!-- ...existing code... -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="main.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "custom-blue": "#3B82F6",
+              "custom-green": "#10B981",
+              "custom-red": "#EF4444",
+              "custom-purple": "#8B5CF6",
+              "custom-orange": "#F59E0B",
+            },
+            animation: {
+              "fade-in": "fadeIn 0.5s ease-in-out",
+              "slide-up": "slideUp 0.3s ease-out",
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-screen gradient-bg">
+    <!-- Header -->
+    <header class="glass-effect shadow-lg">
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <!-- Left: Logo & Title -->
+          <div class="flex items-center space-x-3">
+            <a href="about.html" class="flex items-center space-x-2 group">
+              <div
+                class="w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform"
+              >
+                <span class="text-white font-bold text-lg">4.0</span>
+              </div>
+              <div>
+                <a href="about.html">
+                  <h1
+                    class="text-white text-xl font-bold tracking-wide group-hover:text-yellow-300 transition-colors"
+                  >
+                    4.00 Journey
+                  </h1>
+                  <p class="text-gray-200 text-sm">Your Path to Excellence</p>
+                </a>
+              </div>
+            </a>
+          </div>
+          <!-- Right: Navigation Links & Date/Theme -->
+          <div class="flex items-center space-x-6">
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex space-x-4">
+              <a
+                href="about.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >About</a
+              >
+              <a
+                href="index.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >Planner</a
+              >
+              <a
+                href="more.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >More from us</a
+              >
+              <a
+                href="others.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >Also See</a
+              >
+              <a
+                href="contact.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >Contact</a
+              >
+            </nav>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+              <button
+                id="mobileMenuBtn"
+                class="text-white hover:text-yellow-300 text-2xl focus:outline-none"
+              >
+                ☰
+              </button>
+            </div>
+            <!-- Date & Theme Toggle -->
+            <div class="flex flex-col items-end space-y-1">
+              <p class="text-sm" id="currentDate"></p>
+              <p class="text-xs text-gray-200" id="currentTime"></p>
+              <button
+                id="themeToggleBtn"
+                onclick="toggleTheme()"
+                class="mt-2 bg-white/20 hover:bg-white/30 text-yellow-300 dark:text-gray-800 px-3 py-2 rounded-full transition-all"
+                title="Toggle Light/Dark Theme"
+              >
+                <span id="themeIcon">🌙</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobileMenu" class="md:hidden hidden mt-3">
+          <nav
+            class="flex flex-col space-y-2 bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-900 rounded-lg p-4 shadow-lg"
+          >
+            <a
+              href="about.html"
+              class="text-white hover:text-yellow-300 font-medium transition-colors"
+              >About</a
+            >
+            <a
+              href="index.html"
+              class="text-white hover:text-yellow-300 font-medium transition-colors"
+              >Planner</a
+            >
+            <a
+              href="more.html"
+              class="text-white hover:text-yellow-300 font-medium transition-colors"
+              >More from us</a
+            >
+            <a
+              href="contact.html"
+              class="text-white hover:text-yellow-300 font-medium transition-colors"
+              >Contact</a
+            >
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-6 space-y-6">
+      <!-- Daily Work Status Section -->
+      <div class="glass-effect rounded-2xl p-6 animate-fade-in">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-white">📊 Daily Work Status</h2>
+          <div class="flex gap-2">
+            <button
+              onclick="openStatusModal()"
+              class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-all transform hover:scale-105"
+            >
+              📝 Update Status
+            </button>
+            <button
+              onclick="downloadStatusExcel()"
+              class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium transition-all transform hover:scale-105"
+              title="Download all status as Excel"
+            >
+              ⬇️ Download Excel
+            </button>
+          </div>
+        </div>
+
+        <!-- Today's Status Display -->
+        <div id="todayStatusDisplay" class="mb-6">
+          <!-- Will be populated by JavaScript -->
+        </div>
+
+        <!-- Status History -->
+        <div class="bg-white/10 rounded-xl p-4">
+          <h3 class="text-white font-semibold mb-3">
+            📈 Recent Status History
+          </h3>
+          <div id="statusHistory" class="space-y-2 max-h-40 overflow-y-auto">
+            <!-- Will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+      <!-- Daily Motivation Section -->
+      <div class="glass-effect rounded-2xl p-6 animate-fade-in">
+        <div class="text-center mb-6">
+          <h2 class="text-2xl font-bold text-white mb-2">
+            🔆 Daily Motivation
+          </h2>
+          <p class="text-blue-300 font-semibold animate-pulse-slow">
+            🔥 You are on your 4.00 Journey!
+          </p>
+        </div>
+
+        <!-- Motivation Mode Selector -->
+        <div class="flex flex-wrap justify-center gap-2 mb-4">
+          <button
+            onclick="setMotivationMode('bhakti')"
+            class="mode-btn bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all"
+          >
+            🕉️ Bhakti Mode
+          </button>
+          <button
+            onclick="setMotivationMode('warrior')"
+            class="mode-btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all"
+          >
+            ⚔️ Warrior Mode
+          </button>
+          <button
+            onclick="setMotivationMode('peace')"
+            class="mode-btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all"
+          >
+            🧘 Peace Mode
+          </button>
+        </div>
+
+        <!-- Quote Display -->
+        <div class="bg-white/10 rounded-xl p-6 mb-4">
+          <div class="text-center">
+            <p class="text-white text-lg font-medium mb-2" id="motivationQuote">
+              Loading inspiration...
+            </p>
+            <p class="text-gray-300 text-sm" id="quoteAuthor"></p>
+          </div>
+        </div>
+
+        <!-- Quote Controls -->
+        <div class="flex justify-center space-x-4">
+          <button
+            onclick="generateNewQuote()"
+            class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105"
+          >
+            🔄 New Quote
+          </button>
+          <button
+            onclick="saveQuote()"
+            class="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105"
+          >
+            💾 Save This
+          </button>
+        </div>
+      </div>
+
+      <!-- Study Planner Section -->
+      <div class="glass-effect rounded-2xl p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-white">📚 Today's Study Plan</h2>
+          <button
+            onclick="openAddSessionModal()"
+            class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium transition-all transform hover:scale-105"
+          >
+            ➕ Add Session
+          </button>
+        </div>
+
+        <!-- Study Sessions List -->
+        <div id="studySessionsList" class="space-y-3">
+          <!-- Sessions will be dynamically loaded here -->
+        </div>
+
+        <!-- Study Stats -->
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-green-500/20 rounded-lg p-4 text-center">
+            <p class="text-green-300 text-sm">Completed</p>
+            <p class="text-white text-2xl font-bold" id="completedCount">0</p>
+          </div>
+          <div class="bg-red-500/20 rounded-lg p-4 text-center">
+            <p class="text-red-300 text-sm">Pending</p>
+            <p class="text-white text-2xl font-bold" id="pendingCount">0</p>
+          </div>
+          <div class="bg-blue-500/20 rounded-lg p-4 text-center">
+            <p class="text-blue-300 text-sm">Total Hours</p>
+            <p class="text-white text-2xl font-bold" id="totalHours">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saved Quotes Section -->
+      <div class="glass-effect rounded-2xl p-6">
+        <h2 class="text-2xl font-bold text-white mb-4">
+          💫 My Favorite Quotes
+        </h2>
+        <div id="savedQuotesList" class="space-y-2 max-h-60 overflow-y-auto">
+          <!-- Saved quotes will appear here -->
+        </div>
+      </div>
+
+      <!-- Study Timer Section -->
+      <div class="glass-effect rounded-2xl p-6">
+        <h2 class="text-2xl font-bold text-white mb-4">⏱️ Study Timer</h2>
+
+        <!-- Timer Display -->
+        <div class="text-center mb-6">
+          <div class="relative inline-block">
+            <div
+              class="w-48 h-48 mx-auto bg-white/10 rounded-full flex items-center justify-center border-4 border-white/20 relative overflow-hidden"
+            >
+              <!-- Progress Ring -->
+              <svg
+                class="absolute inset-0 w-full h-full transform -rotate-90"
+                viewBox="0 0 100 100"
+              >
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="45"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.1)"
+                  stroke-width="2"
+                />
+                <circle
+                  id="progressRing"
+                  cx="50"
+                  cy="50"
+                  r="45"
+                  fill="none"
+                  stroke="#10B981"
+                  stroke-width="3"
+                  stroke-dasharray="283"
+                  stroke-dashoffset="283"
+                  class="transition-all duration-1000"
+                />
+              </svg>
+
+              <!-- Timer Display -->
+              <div class="text-center z-10">
+                <div class="text-4xl font-bold text-white" id="timerDisplay">
+                  25:00
+                </div>
+                <div class="text-sm text-gray-300" id="timerMode">
+                  Focus Time
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timer Controls -->
+        <div class="flex justify-center space-x-3 mb-4">
+          <button
+            onclick="startTimer()"
+            id="startBtn"
+            class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105"
+          >
+            ▶️ Start
+          </button>
+          <button
+            onclick="pauseTimer()"
+            id="pauseBtn"
+            class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105 hidden"
+          >
+            ⏸️ Pause
+          </button>
+          <button
+            onclick="resetTimer()"
+            class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105"
+          >
+            🔄 Reset
+          </button>
+        </div>
+
+        <!-- Timer Presets -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+          <button
+            onclick="setTimer(25, 'Focus Time')"
+            class="bg-blue-500/20 hover:bg-blue-500/30 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all"
+          >
+            🍅 Pomodoro<br /><span class="text-xs">25 min</span>
+          </button>
+          <button
+            onclick="setTimer(5, 'Short Break')"
+            class="bg-green-500/20 hover:bg-green-500/30 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all"
+          >
+            ☕ Short Break<br /><span class="text-xs">5 min</span>
+          </button>
+          <button
+            onclick="setTimer(15, 'Long Break')"
+            class="bg-purple-500/20 hover:bg-purple-500/30 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all"
+          >
+            🛋️ Long Break<br /><span class="text-xs">15 min</span>
+          </button>
+          <button
+            onclick="setTimer(45, 'Deep Focus')"
+            class="bg-orange-500/20 hover:bg-orange-500/30 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all"
+          >
+            🧠 Deep Focus<br /><span class="text-xs">45 min</span>
+          </button>
+        </div>
+
+        <!-- Custom Timer -->
+        <div class="bg-white/10 rounded-lg p-4">
+          <div class="flex items-center space-x-4">
+            <label class="text-white text-sm font-medium">Custom:</label>
+            <input
+              type="number"
+              id="customMinutes"
+              min="1"
+              max="180"
+              value="25"
+              class="w-20 bg-white/10 border border-white/20 rounded px-3 py-1 text-white text-center"
+            />
+            <span class="text-white text-sm">minutes</span>
+            <button
+              onclick="setCustomTimer()"
+              class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded text-sm font-medium transition-all"
+            >
+              Set Timer
+            </button>
+          </div>
+        </div>
+
+        <!-- Timer Stats -->
+        <div class="mt-4 grid grid-cols-3 gap-4 text-center">
+          <div class="bg-green-500/20 rounded-lg p-3">
+            <p class="text-green-300 text-xs">Completed Sessions</p>
+            <p class="text-white text-lg font-bold" id="completedSessions">0</p>
+          </div>
+          <div class="bg-blue-500/20 rounded-lg p-3">
+            <p class="text-blue-300 text-xs">Focus Time Today</p>
+            <p class="text-white text-lg font-bold" id="focusTimeToday">0h</p>
+          </div>
+          <div class="bg-purple-500/20 rounded-lg p-3">
+            <p class="text-purple-300 text-xs">Current Streak</p>
+            <p class="text-white text-lg font-bold" id="currentStreak">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reminders Section -->
+      <div class="glass-effect rounded-2xl p-6">
+        <h2 class="text-2xl font-bold text-white mb-4">⏰ Daily Reminders</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-yellow-500/20 rounded-lg p-4">
+            <div class="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="tiffinReminder"
+                class="w-4 h-4 text-yellow-500"
+              />
+              <label for="tiffinReminder" class="text-white"
+                >Complete your Assignments📖</label
+              >
+            </div>
+          </div>
+          <div class="bg-purple-500/20 rounded-lg p-4">
+            <div class="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="bedtimeReminder"
+                class="w-4 h-4 text-purple-500"
+              />
+              <label for="bedtimeReminder" class="text-white"
+                >Embrace a Healthy Sleep Routine😴</label
+              >
+            </div>
+          </div>
+          <div class="bg-green-500/20 rounded-lg p-4">
+            <div class="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="reviseLessons"
+                class="w-4 h-4 text-green-500"
+              />
+              <label for="reviseLessons" class="text-white">
+                Revise the lessons📝
+              </label>
+            </div>
+          </div>
+          <div class="bg-blue-500/20 rounded-lg p-4">
+            <div class="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="maintainDiet"
+                class="w-4 h-4 text-blue-500"
+              />
+              <label for="maintainDiet" class="text-white">
+                Maintain your Diet🥗
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Session Modal -->
+    <div
+      id="addSessionModal"
+      class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50"
+    >
+      <div class="glass-effect rounded-2xl p-6 w-full max-w-md mx-4">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold text-white">Add Study Session</h3>
+          <button
+            onclick="closeAddSessionModal()"
+            class="text-white hover:text-red-300 text-2xl"
+          >
+            &times;
+          </button>
+        </div>
+
+        <form id="addSessionForm" class="space-y-4">
+          <div>
+            <label class="block text-white text-sm font-medium mb-2"
+              >Subject/Topic</label
+            >
+            <input
+              type="text"
+              id="sessionSubject"
+              class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white placeholder-gray-300"
+              placeholder="e.g., Physics Revision"
+              required
+            />
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-white text-sm font-medium mb-2"
+                >Start Time</label
+              >
+              <input
+                type="time"
+                id="sessionStartTime"
+                class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-white text-sm font-medium mb-2"
+                >End Time</label
+              >
+              <input
+                type="time"
+                id="sessionEndTime"
+                class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="flex space-x-4">
+            <button
+              type="submit"
+              class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-medium transition-all"
+            >
+              Add Session
+            </button>
+            <button
+              type="button"
+              onclick="closeAddSessionModal()"
+              class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg font-medium transition-all"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Daily Status Modal -->
+    <div
+      id="statusModal"
+      class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50"
+    >
+      <div class="glass-effect rounded-2xl p-6 w-full max-w-md mx-4">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold text-white">📊 Daily Work Status</h3>
+          <button
+            onclick="closeStatusModal()"
+            class="text-white hover:text-red-300 text-2xl"
+          >
+            &times;
+          </button>
+        </div>
+
+        <form id="statusForm" class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-white text-sm font-medium mb-2"
+                >Date</label
+              >
+              <input
+                type="date"
+                id="statusDate"
+                class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-white text-sm font-medium mb-2"
+                >Day</label
+              >
+              <input
+                type="text"
+                id="statusDay"
+                class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white"
+                readonly
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-white text-sm font-medium mb-2">
+              Hardwork Score <span class="text-gray-300">(out of 10)</span>
+            </label>
+            <input
+              type="number"
+              id="hardworkScore"
+              min="0"
+              max="10"
+              step="0.1"
+              class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="block text-white text-sm font-medium mb-2">
+              Health Score <span class="text-gray-300">(out of 15)</span>
+            </label>
+            <input
+              type="number"
+              id="healthScore"
+              min="0"
+              max="15"
+              step="0.1"
+              class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="block text-white text-sm font-medium mb-2">
+              School Work Score <span class="text-gray-300">(out of 2.5)</span>
+            </label>
+            <input
+              type="number"
+              id="schoolWorkScore"
+              min="0"
+              max="2.5"
+              step="0.1"
+              class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white"
+              required
+            />
+          </div>
+
+          <div class="flex space-x-4">
+            <button
+              type="submit"
+              class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-medium transition-all"
+            >
+              Calculate & Save
+            </button>
+            <button
+              type="button"
+              onclick="closeStatusModal()"
+              class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg font-medium transition-all"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+
+    <!-- Credits and copyrights section -->
+    <footer class="glass-effect mt-12 py-6 backdrop-blur-md">
+      <div class="container mx-auto px-4 text-center">
+        <p class="text-gray-200">
+          © 2026
+          <span class="text-yellow-300 font-semibold">CogniVexa Prime</span>.
+          All rights reserved.
+        </p>
+        <p class="text-gray-300 text-sm mt-2">
+          Part of <span class="text-white font-semibold">4.00 Journey</span> -
+          Your Path to Excellence
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
