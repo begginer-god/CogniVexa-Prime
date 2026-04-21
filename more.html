@@ -109,28 +109,26 @@
           </div>
         </div>
         <!-- Mobile Dropdown Menu -->
-        <div id="mobileMenu" class="md:hidden hidden mt-3">
-          <nav
-            class="flex flex-col space-y-2 bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-900 rounded-lg p-4 shadow-lg"
-          >
+        <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
+          <nav class="flex flex-col space-y-2">
             <a
               href="about.html"
-              class="text-white hover:text-yellow-300 font-medium transition-colors"
+              class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md text-center"
               >About</a
             >
             <a
               href="index.html"
-              class="text-white hover:text-yellow-300 font-medium transition-colors"
+              class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md text-center"
               >Planner</a
             >
             <a
               href="more.html"
-              class="text-white hover:text-yellow-300 font-medium transition-colors"
+              class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md text-center"
               >More from us</a
             >
             <a
               href="contact.html"
-              class="text-white hover:text-yellow-300 font-medium transition-colors"
+              class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md text-center"
               >Contact</a
             >
           </nav>
@@ -310,5 +308,14 @@
         </p>
       </div>
     </footer>
+    <script>
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
+    </script>
   </body>
 </html>
