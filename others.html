@@ -30,7 +30,7 @@
   </head>
   <body class="min-h-screen gradient-bg">
     <!-- Header -->
-    <header class="glass-effect shadow-lg">
+   <header class="glass-effect shadow-lg">
       <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
           <!-- Left: Logo & Title -->
@@ -42,19 +42,72 @@
                 <span class="text-white font-bold text-lg">4.0</span>
               </div>
               <div>
-                <a href="about.html">
-                  <h1
-                    class="text-white text-xl font-bold tracking-wide group-hover:text-yellow-300 transition-colors"
-                  >
-                    4.00 Journey
-                  </h1>
-                  <p class="text-gray-200 text-sm">Your Path to Excellence</p>
-                </a>
+                <h1
+                  class="text-white text-xl font-bold tracking-wide group-hover:text-yellow-300 transition-colors"
+                >
+                  4.00 Journey
+                </h1>
+                <p class="text-gray-200 text-sm">Your Path to Excellence</p>
               </div>
             </a>
           </div>
           <!-- Right: Navigation Links & Date/Theme -->
-          <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
+          <div class="flex items-center space-x-6">
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex space-x-4">
+              <a
+                href="about.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >About</a
+              >
+              <a
+                href="index.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >Planner</a
+              >
+              <a
+                href="more.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >More from us</a
+              >
+              <a
+                href="others.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >Also See</a
+              >
+
+              <a
+                href="contact.html"
+                class="glass-effect px-4 py-2 rounded-lg text-white hover:text-yellow-300 font-medium transition-colors backdrop-blur-md"
+                >Contact</a
+              >
+            </nav>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+              <button
+                id="mobileMenuBtn"
+                class="text-white hover:text-yellow-300 text-2xl focus:outline-none"
+              >
+                ☰
+              </button>
+            </div>
+            <!-- Date & Theme Toggle -->
+            <div class="flex flex-col items-end space-y-1">
+              <p class="text-sm" id="currentDate"></p>
+              <p class="text-xs text-gray-200" id="currentTime"></p>
+              <button
+                id="themeToggleBtn"
+                onclick="toggleTheme()"
+                class="mt-2 bg-white/20 hover:bg-white/30 text-yellow-300 dark:text-gray-800 px-3 py-2 rounded-full transition-all"
+                title="Toggle Light/Dark Theme"
+              >
+                <span id="themeIcon">🌙</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
           <nav class="flex flex-col space-y-2">
             <a
               href="about.html"
@@ -80,21 +133,8 @@
         </div>
       </div>
     </header>
-            <!-- Date & Theme Toggle -->
-            <div class="flex flex-col items-end space-y-1">
-              <p class="text-sm" id="currentDate"></p>
-              <p class="text-xs text-gray-200" id="currentTime"></p>
-              <button
-                id="themeToggleBtn"
-                onclick="toggleTheme()"
-                class="mt-2 bg-white/20 hover:bg-white/30 text-yellow-300 dark:text-gray-800 px-3 py-2 rounded-full transition-all"
-                title="Toggle Light/Dark Theme"
-              >
-                <span id="themeIcon">🌙</span>
-              </button>
-            </div>
-          </div>
-        </div>
+   
+            
         <!-- Mobile Dropdown Menu -->
         <div id="mobileMenu" class="md:hidden hidden mt-3">
           <nav
